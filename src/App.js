@@ -1,23 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import axios from "axios";
+import {useState,useEffect} from "react";
 
+const url ="https://gorest.co.in/public/v2/users";
 function App() {
+  const[users, setUsers] =useState(null);
+  useEffect(()=>{
+    axios.get(url).then(res =>{
+        setUsers(res.data[0]);
+        console.log(res.data);
+        
+    });
+  },[]);
+  if(!users) return "No post!"
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <h1>{users.name}</h1>
     </div>
   );
 }
