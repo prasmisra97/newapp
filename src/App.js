@@ -12,6 +12,14 @@ function App() {
         console.log(res.data);
         
     });
+    function App() {
+      const[users, setUsers] =useState(null);
+      useEffect(()=>{
+        axios.get(url).then(res =>{
+            setUsers(res.data[0]);
+            console.log(res.data);
+            
+        });
   },[]);
   if(!users) return "No post!"
   return (
